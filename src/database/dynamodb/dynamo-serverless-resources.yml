@@ -1,0 +1,28 @@
+Resources:
+
+  #
+  # DynamoDB Tables
+  #
+
+  UsersTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ${self:custom.stage}-Users
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
+#      PointInTimeRecoverySpecification:
+#        PointInTimeRecoveryEnabled: true
+
+Outputs:
+
+  UsersTableArn:
+    Value: !GetAtt UsersTable.Arn
+    Export:
+      Name: !Join [ '-', [ !Ref 'AWS::StackName', 'UsersTableArn' ] ]

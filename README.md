@@ -23,3 +23,4 @@ TODO:\
     - [ ] Graph Database
     - [ ] postgres
 - [ ] Testing
+- [ ] Pipeline Setup 
