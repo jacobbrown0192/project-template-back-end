@@ -38,4 +38,15 @@ Resources:
                   - "dynamodb:PutItem"
                   - "dynamodb:UpdateItem"
                   - "dynamodb:DeleteItem"
-                Resource: !ImportValue ${self:custom.siteName}-datastores-InsightsTableArn
+                Resource: !GetAtt UsersTable.Arn
+              -
+                Effect: Allow
+                Action:
+                  - "dynamodb:BatchGetItem"
+                  - "dynamodb:GetItem"
+                  - "dynamodb:Query"
+                Resource:
+                  - !Join
+                    - ''
+                    - - !GetAtt UsersTable.Arn
+                      - '/index/*'
